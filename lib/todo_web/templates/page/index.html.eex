@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-3">
+    <h3>Todos</h3>
+    <ul class="list-group">
+    <%= for todo <- @todo do %> 
+      <li class="list-group-item"> <%= link todo.title, to: Routes.todo_path(@conn, :show, todo.id), class: "btn btn-link" %></li>
+    <% end %>
+
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div class="jumbotron">
+      <div class="page-header text-center">
+        <h2>Welcome to Todo App</h2>
+      </div>
+      <div class="page-header text-center">
+        <h2><small>Choose the Todo Lists on the left to View</small></h2>
+        <h2><small>or <a <%= link "Create", to: Routes.todo_path(@conn, :new), class: "btn btn-primary" %></a> a new one</small></h2>
+      </div>
+    </div>
+  </div>
+</div>
