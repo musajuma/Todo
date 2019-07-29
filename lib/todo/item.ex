@@ -2,10 +2,12 @@ defmodule Todo.Item do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Todo.{User, Todo}
+
   schema "items" do
     field :item_name, :string
-    belongs_to :todos, Todo.Todo
-    belongs_to :user, Todo.User
+    belongs_to :todo, Todo
+    belongs_to :user, User
 
     timestamps()
   end

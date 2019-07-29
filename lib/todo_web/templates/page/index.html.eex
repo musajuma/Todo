@@ -8,10 +8,11 @@
 
     </ul>
   </div>
+  <br>
   <div class="col-md-9">
     <div class="jumbotron">
       <div class="page-header text-center">
-        <h2>Welcome to Todo App</h2>
+        <h2>This is Todo App</h2>
       </div>
       <div class="page-header text-center">
         <h2><small>Choose the Todo Lists on the left to View</small></h2>

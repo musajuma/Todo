@@ -10,7 +10,7 @@ defmodule TodoWeb.RegistrationController do
     end
 
     def create(conn, %{"registration" => %{"email" => email} = registration_params}) do
-        case Auth.register(registration_params) do
+        case Auth.register_user(registration_params) do
             {:ok, user} ->
 
                 Log.info(%Log{user: user.id, message: "user created"})
@@ -19,7 +19,7 @@ defmodule TodoWeb.RegistrationController do
 
                 conn
                 |> put_session(:current_user_id, user.id)
-                |> put_flash(:info, "You have successfully signed up!")
+                |> put_flash(:info, "You have successfully signed up!, check your email for the confirmation link")
                 |> redirect(to: Routes.session_path(conn, :new))
 
             {:error, changeset} ->

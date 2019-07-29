@@ -29,7 +29,7 @@ defmodule TodoWeb.Router do
     get "/confirm", SessionController, :confirm
     get "/sign_out", SessionController, :delete
 
-    resources "/todos", TodoController 
+    resources "/todos", TodoController
 
   end
 

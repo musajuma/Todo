@@ -31,7 +31,7 @@ config :todo, TodoWeb.Mailer, adapter: Bamboo.LocalAdapter
 config :phauxth,
   user_context: Todo.Auth,
   crypto_module: Bcrypt,
-  token_module: TodoWeb.Auth.Token
+  token_module: TodoWeb.Helper.Token
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

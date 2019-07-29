@@ -2,11 +2,15 @@ defmodule Todo.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Todo.{Todo, Item}
+
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-    has_many :todos, Todo.Todo
+    field :confirmed_at, :utc_datetime
+    has_many :todos, Todo
+    has_many :items, Item
 
     timestamps()
   end

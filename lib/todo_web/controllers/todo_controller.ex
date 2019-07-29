@@ -5,17 +5,16 @@ defmodule TodoWeb.TodoController do
 
   plug TodoWeb.Plugs.AuthenticateUser when action not in [:index]
 
-
   def new(conn, _params) do
     changeset = TodoList.change_todo(%Todo{})
     render conn, "new.html", changeset: changeset
   end
 
   def create(conn, %{"todo" => todo_params}) do
-    case TodoList.create(todo_params) do
-      {:ok, todo} ->
+    case TodoList.create_todo(todo_params) do
+      {:ok, _todo} ->
         conn
-        |> put_session(:current_todo_id, todo.id)
+
         |> put_flash(:info, "Todo topic created")
         |> redirect(to: Routes.page_path(conn, :index))
 
@@ -26,7 +25,7 @@ defmodule TodoWeb.TodoController do
 
   def show(conn, info) do
     todoinfo = Repo.get(Todo, info["id"])
-    render conn, "show.html", content: todoinfo
+    render conn, "show.html", todo: todoinfo
   end
 
   def edit(conn, %{"id" => id}) do
@@ -47,6 +46,15 @@ defmodule TodoWeb.TodoController do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", todo: todo, changeset: changeset)
     end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    todo = TodoList.get_todo!(id)
+    {:ok, _todo} = TodoList.delete_todo(todo)
+
+    conn
+    |> put_flash(:info, "Todo deleted.")
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 
 end

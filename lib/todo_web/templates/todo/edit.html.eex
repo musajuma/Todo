@@ -1,5 +1,3 @@
-<h2>Edit todo: </h2>
+<h2>Edit todo: <%= @todo.title %></h2>
 
-    <%= @todo.title %>
-
-<%= render "new.html", Map.put(assigns, :action, Routes.todo_path(@conn, :update, @todo)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.todo_path(@conn, :update, @todo)) %>

@@ -10,26 +10,27 @@
 
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <%= if Todo.Auth.user_signed_in?(@conn) do %>
-              <a class="btn btn-primary" href="<%= Routes.session_path(@conn, :delete) %>">Sign Out</a> 
-            <% else %>
-              <a class="btn btn-primary" href="<%= Routes.session_path(@conn, :new) %>">Sign In</a> &nbsp
-              <a class="btn btn-danger" href="<%= Routes.registration_path(@conn, :new) %>">Sign up</a>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">
+        <a href="/" class="navbar-brand text-dark"><strong>Todo</strong></a>
+      </h5>
+        <%= if Todo.Auth.user_signed_in?(@conn) do %>
+          <nav class="my-2 my-md-0 mr-md-3">
+            Signed in as: <strong><%= @current_user.email %></strong>
+          </nav>
+          <a class="btn btn-primary" href="<%= Routes.session_path(@conn, :delete) %>">Sign Out</a> 
+        <% else %>
+          <a class="btn btn-primary" href="<%= Routes.session_path(@conn, :new) %>">Sign In</a> &nbsp
+          <a class="btn btn-danger" href="<%= Routes.registration_path(@conn, :new) %>">Sign up</a>
+        <% end %>
+    </div>
     <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

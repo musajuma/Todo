@@ -4,8 +4,8 @@ defmodule Todo.Repo.Migrations.CreateItems do
   def change do
     create table(:items) do
       add :item_name, :string
-      add :todo_id, references(:todos, on_delete: :nothing)
-      add :user_id, references(:users, on_delete: :nothing)
+      add :todo_id, references(:todos, on_delete: :delete_all)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end

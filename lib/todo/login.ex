@@ -5,9 +5,6 @@ defmodule Todo.Login do
   alias Todo.Auth
 
   @impl true
-  # the authenticate function is overriden to check the user struct
-  # to see if the user is confirmed.
-  # if the user has not been confirmed, an error is returned
 
   def authenticate(%{"password" => password} = params, _, opts) do
     case Auth.get_by(params) do

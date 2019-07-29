@@ -7,14 +7,15 @@
     <div class="form-label-group">
       <%= label f, :email, "Email address", class: "control-label" %>
       <%= text_input f, :email, class: "form-control", placeholder: "Email address", required: true, autofocus: true %>
-    </div>                      
+    </div>   
     <br>
     <div class="form-label-group">
       <%= label f, :password, class: "control-label" %>
       <%= password_input f, :password, class: "form-control", placeholder: "Password", required: true %>
     </div>
-     <br>
-    <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
-
+    <br>
+    <div>
+      <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+    </div>
   <% end %>
 </div>

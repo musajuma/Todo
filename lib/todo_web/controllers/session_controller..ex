@@ -18,7 +18,7 @@ defmodule TodoWeb.SessionController do
 
       {:error, _reason} ->
         conn
-        |> put_flash(:error, "Account unconfirmed!. Check email for verification link")
+        |> put_flash(:error, "Account unconfirmed!. Check email for confirmation link ")
         |> render("new.html")
     end
   end
@@ -30,13 +30,13 @@ defmodule TodoWeb.SessionController do
         Email.confirm_email(user.email)
 
         conn
-        |> put_flash(:info, "Your account has been confirmed.")
-        |> render("signin.html")
+        |> put_flash(:info, "Your account has been confirmed!, you can now sign in")
+        |> render("new.html")
 
       {:error, message} ->
         conn
         |> put_flash(:error, message)
-        |> render("signin.html")
+        |> render("new.html")
     end
   end
 

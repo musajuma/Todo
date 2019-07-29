@@ -5,7 +5,6 @@ defmodule Todo.Email do
 
   def welcome_email(user, key) do
     base_email(user)
-    |> to(user)
     |> subject("Welcome to the app.")
     |> text_body("Confirm your email here http://localhost:4000/confirm?key=#{key}")
     |> Mailer.deliver_now()
@@ -14,7 +13,7 @@ defmodule Todo.Email do
   def confirm_email(email) do
     base_email(email)
     |> subject("Account_confirmed")
-    |> text_body("Your Account has been confirmed")
+    |> text_body("Your Account has been confirmed, sigin in below")
     |> Mailer.deliver_now()
   end
 
