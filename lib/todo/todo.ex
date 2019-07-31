@@ -7,7 +7,7 @@ defmodule Todo.Todo do
   schema "todos" do
     field :title, :string
     belongs_to :user, User
-    has_many :item, Item
+    has_many :items, Item
 
     timestamps()
   end

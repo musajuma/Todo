@@ -1,8 +1,8 @@
 <%= form_for @changeset, @action, fn f -> %>
   <div class="form-group">
-    <%= label f, :Topic, class: "control-label" %>
-    <%= text_input f, :Topic, class: "form-control" %>
-    <%= error_tag f, :Topic %>
+    <%= label f, :Title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control", required: true %>
+    <%= error_tag f, :title %>
   </div>
 
   <div class="form-group">

@@ -7,13 +7,6 @@ defmodule Todo.Session do
 
   @max_age 14_800
 
-  @type t :: %__MODULE__{
-    confirmed_at: DateTime.t(),
-    id: integer,
-    user_id: integer,
-    user: User.t() | %Ecto.Association.NotLoaded{},
-  }
-
   schema "sessions" do
     field :confirmed_at, :utc_datetime
     belongs_to :user, User

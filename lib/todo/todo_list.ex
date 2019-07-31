@@ -1,20 +1,21 @@
 defmodule Todo.TodoList do
 
-  alias Todo.{Repo, Todo}
+   alias Todo.{Repo, Todo, User}
 
-  def create_todo(params) do
-    Todo.changeset(%Todo{}, params)
+  def create_todo(%User{} = user, attrs \\ %{}) do
+     user
+    |> Ecto.build_assoc(:todos)
+    |> Todo.changeset(attrs)
     |> Repo.insert()
+   end
+
+  # def get_todo!(id), do: Repo.get!(Todo, id)
+
+  def get_todo!(id) do
+    Todo
+      |> Repo.get!(id)
+      |> Repo.preload(:items)
   end
-
-  # def create_todo(user, attrs \\ %{}) do
-  #   user
-  #   |> Ecto.build_assoc(:todos)
-  #   |> Todo.changeset(attrs)
-  #   |> Repo.insert()
-  # end
-
-  def get_todo!(id), do: Repo.get!(Todo, id)
 
   def list_todo do
     Repo.all(Todo)
