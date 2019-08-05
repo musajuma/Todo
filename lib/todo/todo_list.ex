@@ -15,6 +15,7 @@ defmodule Todo.TodoList do
     Todo
       |> Repo.get!(id)
       |> Repo.preload(:items)
+
   end
 
   def list_todo do
@@ -34,7 +35,8 @@ defmodule Todo.TodoList do
   def delete_todo(%Todo{} = todo) do
     Repo.delete(todo)
   end
-  def get_by(_attrs) do
-  end
+
+  # def get_by(_attrs) do
+  # end
 
 end

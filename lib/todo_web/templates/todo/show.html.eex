@@ -5,6 +5,13 @@
     <%= link "Delete", to: Routes.todo_path(@conn, :delete, @todo), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
   </div>
 
+<h3>What to do</h3>
+<ul>
+  <%= for item <- @todo.items do %>
+    <li class=""><%= item.item_name %> </li>
+  <% end %>
+</ul>
+
 <h3>Add an item</h3>
 <%= form_for @item_changeset, Routes.todo_item_path(@conn, :create, @todo), fn f -> %>
   <%= label f, :item_name %>
@@ -15,10 +22,5 @@
   </div>
 <% end %>
 
-<h3>Items</h3>
-<ul>
-<%= for item <- @todo.items do %>
-  <li class="item"><%= item.item_name %></li>
-<% end %>
-</ul>
+
 

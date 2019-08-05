@@ -32,9 +32,6 @@ defmodule TodoWeb.Router do
     resources "/todos", TodoController do
       resources "/items", ItemController, only: [:create]
     end
-
-
-
   end
 
   # Other scopes may use custom stacks.
