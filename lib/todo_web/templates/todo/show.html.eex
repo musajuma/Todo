@@ -12,9 +12,8 @@
   <% end %>
 </ul>
 
-<h3>Add an item</h3>
 <%= form_for @item_changeset, Routes.todo_item_path(@conn, :create, @todo), fn f -> %>
-  <%= label f, :item_name %>
+  <%= label f, :add_item %>
   <%= textarea f, :item_name %>
   <%= error_tag f, :item_name %>
   <div>

@@ -4,7 +4,6 @@ defmodule Todo.Login do
 
   alias Todo.Auth
 
-  @impl true
 
   def authenticate(%{"password" => password} = params, _, opts) do
     case Auth.get_by(params) do

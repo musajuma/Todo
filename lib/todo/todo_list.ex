@@ -7,15 +7,12 @@ defmodule Todo.TodoList do
     |> Ecto.build_assoc(:todos)
     |> Todo.changeset(attrs)
     |> Repo.insert()
-   end
-
-  # def get_todo!(id), do: Repo.get!(Todo, id)
+  end
 
   def get_todo!(id) do
     Todo
       |> Repo.get!(id)
       |> Repo.preload(:items)
-
   end
 
   def list_todo do
