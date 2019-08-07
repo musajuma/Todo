@@ -1,6 +1,6 @@
 defmodule Todo.Auth do
 
-  alias Todo.{User, Repo, Session}
+  alias Todo.{User, Repo}
 
   def sign_in(email, password) do
     user = Repo.get_by(User, email: email)
@@ -28,15 +28,11 @@ defmodule Todo.Auth do
 
   def get_user!(id), do: Repo.get(User, id)
 
-  def get_by(%{"session_id" => session_id}) do
-    with %Session{user_id: user_id} <- Session.get_session(session_id), do: get_user!(user_id)
-  end
-
   def get_by(%{"email" => email}) do
     Repo.get_by(User, email: email)
   end
 
-  def get_by(%{"user_id" => user_id}), do: Repo.get(User, user_id)
+  def gets_by(%{"user_id" => user_id}), do: Repo.get(User, user_id)
 
   def confirm_user(%User{} = user) do
     user |> User.confirm_changeset() |> Repo.update()

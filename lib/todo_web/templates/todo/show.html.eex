@@ -1,14 +1,15 @@
-<h2><%= @todo.title%></h2>
+<h2><strong><%= @todo.title%></strong></h2>
 
   <div class="text-right">
     <%= link "Edit", to: Routes.todo_path(@conn, :edit, @todo.id), class: "btn btn-link" %>
     <%= link "Delete", to: Routes.todo_path(@conn, :delete, @todo), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
   </div>
 
-<h3>What to do</h3>
+<h3> what to do :</h3>
 <ul>
   <%= for item <- @todo.items do %>
-    <li class=""><%= item.item_name %> </li>
+    <strong><li class=""><%= item.item_name %> </li></strong>
+
   <% end %>
 </ul>
 
